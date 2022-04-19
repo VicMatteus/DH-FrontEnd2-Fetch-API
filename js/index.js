@@ -12,6 +12,13 @@ document.getElementById('random').addEventListener('click', function()
         });
 });
 
+function acoplador(elemento, node) {
+    let novoElemento = document.createElement(elemento);
+    let no = document.createTextNode(node);
+    novoElemento.appendChild(no);
+    return novoElemento;
+}
+
 function renderizarDadosUsuario(dados) {
     let container = document.querySelector('div.card');
     container.innerHTML = '';
@@ -21,18 +28,18 @@ function renderizarDadosUsuario(dados) {
     let picture = dados.picture.large;
     let email = dados.email;
 
-    let nameNode = document.createElement('h2').appendChild(document.createTextNode(nomeCompleto));
-    
+    let titulo = acoplador('h2', nomeCompleto);
+    let mail = acoplador('p', email);
+
     let img = document.createElement('img');
     img.setAttribute("src", picture);
     
-    let mailText = document.createTextNode(email);
-    
-    container.classList.add('card')
-    container.appendChild(nameNode);
+    titulo.classList.add('nameNode');
+    mail.classList.add('mail');
+    container.appendChild(titulo);
     container.appendChild(img);
-    container.appendChild(mailText);
-    document.querySelector('div.card').appendChild(container);
+    container.appendChild(mail);
+
     /* -------------------------------- Tarefa 1 -------------------------------- */
     // Aqui devem desenvolver uma função que seja exibida na tela:
     // a foto, o nome completo do usuário e o e-mail.
